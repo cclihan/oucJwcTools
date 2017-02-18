@@ -4,19 +4,12 @@ import http.cookiejar
 from bs4 import BeautifulSoup
 from pylogin.des import *
 import json
-
 from pylogin.captchaDeal import getCaptcha
-
-
     
 class KINGGOFT:
     
     def __init__(self,username='15020021016',password='KL5864300'):
-        
-        
-       
-        
-        
+                
         self.username = username
         self.password = password
         self.indexUrl = 'http://jwgl.ouc.edu.cn/cas/login.action'
@@ -24,13 +17,10 @@ class KINGGOFT:
         self.head = {'User-Agent': 'Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 10.0; WOW64; Trident/7.0; .NET4.0C; .NET4.0E; .NET CLR 2.0.50727; .NET CLR 3.0.30729; .NET CLR 3.5.30729)'}
         cookies = http.cookiejar.CookieJar()
         self.opener = urllib.request.build_opener(urllib.request.HTTPCookieProcessor(cookies))
-        
-        
-        
+                
 #***************************************登陆**********************************************************#
     def login(self):
         
-
         #获取 _sessionid
         def getSessionid():
             
@@ -75,20 +65,16 @@ class KINGGOFT:
             p_username = "_u"+randnumber
             p_password = "_p"+randnumber
             params = p_username+"="+username+"&"+p_password+"="+password+"&randnumber="+randnumber+"&isPasswordPolicy="+passwordPolicy
-      
-            
-       
+             
             data = getEncParams(params,timestamp,_deskey)
             req = urllib.request.Request(self.logonUrl,data,self.head)
             response1 = self.opener.open(req)
-        
             return response1
         
         #获取状态吗
         def getStatus():
             
             randnumber = getRandnumber()       
-            
             keylist = getKeys()
             _deskey = keylist[0]
             timestamp = keylist[1]
